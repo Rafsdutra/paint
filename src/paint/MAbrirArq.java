@@ -14,93 +14,88 @@ import javax.swing.JFrame;
 
 @SuppressWarnings("serial")
 public class MAbrirArq extends JFrame {
-	public static BufferedImage image;
-	private BufferedReader br;
-	public MAbrirArq() throws ClassNotFoundException{
-		JFileChooser fc = new JFileChooser();
-		fc.addChoosableFileFilter(new MFiltroPng());
-		fc.addChoosableFileFilter(new MFiltroTXT());
+
+    public static BufferedImage image;
+    private BufferedReader br;
+
+    public MAbrirArq() throws ClassNotFoundException {
+        JFileChooser fc = new JFileChooser();
+        fc.addChoosableFileFilter(new MFiltroPng());
+        fc.addChoosableFileFilter(new MFiltroTXT());
         int result = fc.showOpenDialog(null);
         if (result == JFileChooser.APPROVE_OPTION) {
-        	if(fc.getSelectedFile().getName().endsWith(".png"))
-        	{ 
-           		try {
-           			image = ImageIO.read(fc.getSelectedFile());
-           			GUI.frame.repaint();
-           		} 
-           		catch (IOException ex) {}
-        	}
-        	else if(fc.getSelectedFile().getName().endsWith(".txt")){
-	        	try{
-	        		FileInputStream k = new FileInputStream(fc.getSelectedFile()); 
-	                InputStreamReader in = new InputStreamReader(k);
-	                br = new BufferedReader(in);
-	                String t = br.readLine(); 
-	                if(t==null) 
-	                { 
-	                    System.out.println ("File rong, chua co du lieu!"); 
-	                } 
-	                else 
-	                {  
-	                    while(t != null){
-	                        String[] a = t.split(";");
-	                        if(a[0].equals("FRetangulo")||a[0].equals("FQuadrado")){
-	                        	Fretangulo r = new Fretangulo();
-	                        	r.makeRectangle(Integer.parseInt(a[1].toString()), Integer.parseInt(a[2].toString()), Integer.parseInt(a[3].toString()), Integer.parseInt(a[4].toString()));
-	                        	r.setLineColor(new Color(Integer.parseInt(a[5]), Integer.parseInt(a[6]), Integer.parseInt(a[7])));
-	                        	if(a[8].equals("null")){
-	                        		r.setColor(null);
-	                        	}else{
-	                        		r.setColor(new Color(Integer.parseInt(a[8]), Integer.parseInt(a[9]), Integer.parseInt(a[10])));
-	                        	}
-	                        	GUI.paint.add(r);
-	                        	GUI.frame.repaint();
-	                        }
-	                        else if(a[0].equals("FElipse")||a[0].equals("FCirculo")){
-	                        	FElipse r = new FElipse();
-	                        	r.makeOval(Integer.parseInt(a[1]), Integer.parseInt(a[2]), Integer.parseInt(a[3]), Integer.parseInt(a[4]));
-	                        	r.setLineColor(new Color(Integer.parseInt(a[5]), Integer.parseInt(a[6]), Integer.parseInt(a[7])));
-	                        	if(a[8].equals("null")){
-	                        		r.setColor(null);
-	                        	}else{
-	                        		r.setColor(new Color(Integer.parseInt(a[8]), Integer.parseInt(a[9]), Integer.parseInt(a[10])));
-	                        	}
-	                        	GUI.paint.add(r);
-	                        	GUI.frame.repaint();
-	                        }else if(a[0].equals("FTriangulo")){
-	                        	          FTriangulo r = new FTriangulo();
-	                        	r.makeTriangle(Integer.parseInt(a[1]), Integer.parseInt(a[2]), Integer.parseInt(a[3]), Integer.parseInt(a[4]));
-	                        	r.setLineColor(new Color(Integer.parseInt(a[5]), Integer.parseInt(a[6]), Integer.parseInt(a[7])));
-	                        	if(a[8].equals("null")){
-	                        		r.setColor(null);
-	                        	}else{
-	                        		r.setColor(new Color(Integer.parseInt(a[8]), Integer.parseInt(a[9]), Integer.parseInt(a[10])));
-	                        	}
-	                        	GUI.paint.add(r);
-	                        	GUI.frame.repaint();
-	                        }else if(a[0].equals("FLinha")){
-	                        	Point startPoint = new Point(Integer.parseInt(a[1]), Integer.parseInt(a[2]));
-	                        	Point endPoint = new Point(Integer.parseInt(a[3]), Integer.parseInt(a[4]));
-	                        	FLinha r = new FLinha(startPoint, endPoint);
-	                        	r.setColor(new Color(Integer.parseInt(a[5]), Integer.parseInt(a[6]), Integer.parseInt(a[7])));
-	                        	GUI.paint.add(r);
-	                        	GUI.frame.repaint();
-	                        }else if(a[0].equals("FPonto")){
-	                        	FPonto r = new FPonto();
-	                        	r.setPoint(new Point(Integer.parseInt(a[1]), Integer.parseInt(a[2])));
-	                        	r.setColor(new Color(Integer.parseInt(a[3]), Integer.parseInt(a[4]), Integer.parseInt(a[5])));
-	                        	GUI.paint.add(r);
-	                        	GUI.frame.repaint();
-	                        }  
-	                        t = br.readLine();                        
-	                    }          
-	                } 
-	                 
-	            } 
-	            catch(IOException ex){ 
-	            	ex.printStackTrace();
-	            }
-           }
+            if (fc.getSelectedFile().getName().endsWith(".png")) {
+                try {
+                    image = ImageIO.read(fc.getSelectedFile());
+                    GUI.frame.repaint();
+                } catch (IOException ex) {
+                }
+            } else if (fc.getSelectedFile().getName().endsWith(".txt")) {
+                try {
+                    FileInputStream k = new FileInputStream(fc.getSelectedFile());
+                    InputStreamReader in = new InputStreamReader(k);
+                    br = new BufferedReader(in);
+                    String t = br.readLine();
+                    if (t == null) {
+                        System.out.println("File rong, chua co du lieu!");
+                    } else {
+                        while (t != null) {
+                            String[] a = t.split(";");
+                            if (a[0].equals("FRetangulo") || a[0].equals("FQuadrado")) {
+                                FRetangulo r = new FRetangulo();
+                                r.makeRectangle(Integer.parseInt(a[1].toString()), Integer.parseInt(a[2].toString()), Integer.parseInt(a[3].toString()), Integer.parseInt(a[4].toString()));
+                                r.setLineColor(new Color(Integer.parseInt(a[5]), Integer.parseInt(a[6]), Integer.parseInt(a[7])));
+                                if (a[8].equals("null")) {
+                                    r.setColor(null);
+                                } else {
+                                    r.setColor(new Color(Integer.parseInt(a[8]), Integer.parseInt(a[9]), Integer.parseInt(a[10])));
+                                }
+                                GUI.paint.add(r);
+                                GUI.frame.repaint();
+                            } else if (a[0].equals("FElipse") || a[0].equals("FCirculo")) {
+                                FElipse r = new FElipse();
+                                r.makeOval(Integer.parseInt(a[1]), Integer.parseInt(a[2]), Integer.parseInt(a[3]), Integer.parseInt(a[4]));
+                                r.setLineColor(new Color(Integer.parseInt(a[5]), Integer.parseInt(a[6]), Integer.parseInt(a[7])));
+                                if (a[8].equals("null")) {
+                                    r.setColor(null);
+                                } else {
+                                    r.setColor(new Color(Integer.parseInt(a[8]), Integer.parseInt(a[9]), Integer.parseInt(a[10])));
+                                }
+                                GUI.paint.add(r);
+                                GUI.frame.repaint();
+                            } else if (a[0].equals("FTriangulo")) {
+                                FTriangulo r = new FTriangulo();
+                                r.makeTriangle(Integer.parseInt(a[1]), Integer.parseInt(a[2]), Integer.parseInt(a[3]), Integer.parseInt(a[4]));
+                                r.setLineColor(new Color(Integer.parseInt(a[5]), Integer.parseInt(a[6]), Integer.parseInt(a[7])));
+                                if (a[8].equals("null")) {
+                                    r.setColor(null);
+                                } else {
+                                    r.setColor(new Color(Integer.parseInt(a[8]), Integer.parseInt(a[9]), Integer.parseInt(a[10])));
+                                }
+                                GUI.paint.add(r);
+                                GUI.frame.repaint();
+                            } else if (a[0].equals("FLinha")) {
+                                Point startPoint = new Point(Integer.parseInt(a[1]), Integer.parseInt(a[2]));
+                                Point endPoint = new Point(Integer.parseInt(a[3]), Integer.parseInt(a[4]));
+                                FLinha r = new FLinha(startPoint, endPoint);
+                                r.setColor(new Color(Integer.parseInt(a[5]), Integer.parseInt(a[6]), Integer.parseInt(a[7])));
+                                GUI.paint.add(r);
+                                GUI.frame.repaint();
+                            } else if (a[0].equals("FPonto")) {
+                                FPonto r = new FPonto();
+                                r.setPoint(new Point(Integer.parseInt(a[1]), Integer.parseInt(a[2])));
+                                r.setColor(new Color(Integer.parseInt(a[3]), Integer.parseInt(a[4]), Integer.parseInt(a[5])));
+                                GUI.paint.add(r);
+                                GUI.frame.repaint();
+                            }
+                            t = br.readLine();
+                        }
+                    }
+
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+            }
         }
-	}
+    }
 }
