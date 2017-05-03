@@ -113,10 +113,7 @@ public class Paint_App extends JComponent {
         g2.setGraphicAdapter(g);
         //bstroke = new BasicStroke(40);
         //g2.getGraphicAdapter().setStroke(bstroke);
-        if (MAbrirArq.image != null) {
-            g2.getGraphicAdapter().drawImage(MAbrirArq.image, 0, 0, null);
-            repaint();
-        }
+       
         for (Paint pt : GUI.paint) {
             pt.draw(g2);
         }

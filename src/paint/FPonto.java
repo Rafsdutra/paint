@@ -38,16 +38,7 @@ public class FPonto implements Class1D {
     	setPoint(endDrag);
     }
 	
-    @Override
-    public void writetoFile(BufferedWriter b){
-    	try {
-    		b.write(getClass().getSimpleName() + ";");
-    		b.write(getPoint().x + ";" + getPoint().y + ";");
-    		b.write(getColor().getRed() + ";" + getColor().getGreen() + ";" + getColor().getBlue());
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-    }
+   
     
     @Override
     public void makeObject(Point startDrag, Point endDrag){
@@ -68,5 +59,10 @@ public class FPonto implements Class1D {
 	public void setColor(Color color) {
 		this.color = color;
 	}
+
+    @Override
+    public void writetoFile(BufferedWriter b) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 	
 }

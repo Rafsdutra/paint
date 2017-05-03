@@ -94,22 +94,7 @@ public class FTriangulo implements Class2D{
 		this.setTriangle(new Polygon(xs,ys,3));
 	}
 	
-	@Override
-    public void writetoFile(BufferedWriter b){
-    	try {
-    		b.write(getClass().getSimpleName() + ";");
-    		b.write(getTriangle().xpoints[0] + ";" + getTriangle().ypoints[0] + ";");
-    		b.write(getTriangle().xpoints[1] + ";" + getTriangle().ypoints[1] + ";");
-    		b.write(getLineColor().getRed() + ";" + getLineColor().getGreen() + ";" + getLineColor().getBlue() +";");
-    		if(getColor()==null){
-    			b.write("null" + ";" +"null" +";" + "null");
-    		}else{
-    			b.write(getColor().getRed() + ";" + getColor().getGreen() + ";" + getColor().getBlue());
-    		}
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-    }
+	
 	
 	public Polygon getTriangle() {
 		return Triangle;
@@ -129,5 +114,10 @@ public class FTriangulo implements Class2D{
 	public void setColor(Color color) {
 		this.color = color;
 	}
+
+    @Override
+    public void writetoFile(BufferedWriter b) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 	
 }

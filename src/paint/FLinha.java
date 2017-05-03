@@ -42,17 +42,7 @@ public class FLinha implements Class1D{
     	this.setLine(ln);
     }
     
-    @Override
-    public void writetoFile(BufferedWriter b){
-    	try {
-    		b.write(getClass().getSimpleName() + ";");
-    		b.write((int)getLine().getStartX() + ";" + (int)getLine().getStartY() + ";" + (int)getLine().getEndX() + ";" + (int)getLine().getEndY() + ";");
-    		b.write(getColor().getRed() + ";" + getColor().getGreen() + ";" + getColor().getBlue());
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-    }
-    
+   
     @Override
     public void makeObject(Point startDrag, Point endDrag){
     	Line ln = new Line(startDrag.x, startDrag.y, endDrag.x,  endDrag.y);
@@ -71,5 +61,10 @@ public class FLinha implements Class1D{
 	public void setLine(Line line) {
 		this.line = line;
 	}
+
+    @Override
+    public void writetoFile(BufferedWriter b) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 	
 }
